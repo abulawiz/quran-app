@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="quranBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b" />
+      <stop offset="50%" stop-color="#047857" />
+      <stop offset="100%" stop-color="#065f46" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef3c7" />
+      <stop offset="50%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Outer Rounded Shield -->
+  <rect width="512" height="512" rx="128" fill="url(#quranBg)"/>
+  
+  <!-- Ornamental Border -->
+  <rect x="24" y="24" width="464" height="464" rx="104" fill="none" stroke="url(#goldGrad)" stroke-width="4" opacity="0.4"/>
+  <rect x="36" y="36" width="440" height="440" rx="92" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" stroke-dasharray="8 6" opacity="0.6"/>
+
+  <!-- Quran Stand (Rihal) / Open Book Stylized Art -->
+  <g transform="translate(96, 110)" filter="url(#shadow)">
+    <!-- Book Left Page -->
+    <path d="M160 220 C100 210, 40 185, 0 170 C0 100, 0 50, 0 40 C50 60, 110 75, 160 85 Z" fill="#ffffff" opacity="0.95"/>
+    <path d="M160 215 C100 205, 45 180, 5 168 C5 105, 5 58, 5 48 C52 66, 110 80, 160 89 Z" fill="#fdfbf7"/>
+    
+    <!-- Book Right Page -->
+    <path d="M160 220 C220 210, 280 185, 320 170 C320 100, 320 50, 320 40 C270 60, 210 75, 160 85 Z" fill="#ffffff" opacity="0.95"/>
+    <path d="M160 215 C215 205, 275 180, 315 168 C315 105, 315 58, 315 48 C268 66, 210 80, 160 89 Z" fill="#fdfbf7"/>
+
+    <!-- Spine Spine Center Glow -->
+    <line x1="160" y1="85" x2="160" y2="220" stroke="url(#goldGrad)" stroke-width="4"/>
+
+    <!-- Decorative Arabic Calligraphy Lines on pages -->
+    <path d="M35 80 Q95 95 140 105 M35 105 Q95 120 140 130 M35 130 Q95 145 140 155" stroke="#ceb480" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+    <path d="M285 80 Q225 95 180 105 M285 105 Q225 120 180 130 M285 130 Q225 145 180 155" stroke="#ceb480" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+
+    <!-- Golden Rihal base (Quran Stand) -->
+    <path d="M60 220 L160 170 L260 220 L240 250 L160 200 L80 250 Z" fill="url(#goldGrad)"/>
+    <circle cx="160" cy="50" r="16" fill="url(#goldGrad)"/>
+    <!-- Crescent & Star on Top -->
+    <path d="M152 42 A 12 12 0 1 0 168 58 A 15 15 0 0 1 152 42 Z" fill="#ffffff"/>
+  </g>
+</svg>

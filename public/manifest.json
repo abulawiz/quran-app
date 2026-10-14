@@ -1,0 +1,18 @@
+{
+  "name": "Al-Qur'an Al-Kareem | القرآن الكريم",
+  "short_name": "Quran Kareem",
+  "description": "Professional Noble Quran application with audio recitations, verse-by-verse highlighting, and translations.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#064e3b",
+  "theme_color": "#064e3b",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/quran-icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

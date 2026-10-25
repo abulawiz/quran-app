@@ -17,6 +17,7 @@ import { TafseerModal } from './components/TafseerModal';
 import { PrayerTimesModal } from './components/PrayerTimesModal';
 import { QRCodeModal } from './components/QRCodeModal';
 import { InstallModal } from './components/InstallModal';
+import { SidebarDrawer } from './components/SidebarDrawer';
 import { LoadingScreen } from './components/LoadingScreen';
 import { AboutAuthorView } from './components/AboutAuthorView';
 import type { TafseerResult } from './services/quranApi';
@@ -86,6 +87,7 @@ const QuranMain: React.FC = () => {
       <MobileBottomNav />
 
       {/* Modals & Dialogs */}
+      <SidebarDrawer />
       <SearchModal />
       <SettingsModal />
       <QRCodeModal />

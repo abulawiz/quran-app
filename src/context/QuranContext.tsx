@@ -79,6 +79,8 @@ interface QuranContextType {
   sendTestAdhkarNotification: (type?: 'morning' | 'evening') => void;
 
   // Modals & PWA
+  isSidebarOpen: boolean;
+  setIsSidebarOpen: (open: boolean) => void;
   isSearchOpen: boolean;
   setIsSearchOpen: (open: boolean) => void;
   isSettingsOpen: boolean;
@@ -334,6 +336,7 @@ export const QuranProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [repeatMode, setRepeatMode] = useState<'none' | 'ayah' | 'surah'>('none');
   const [playbackSpeed, setPlaybackSpeedState] = useState<number>(1.0);
 
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
   const [isQRCodeOpen, setIsQRCodeOpen] = useState<boolean>(false);
@@ -587,6 +590,8 @@ export const QuranProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         updateAdhkarReminders,
         sendTestAdhkarNotification,
 
+        isSidebarOpen,
+        setIsSidebarOpen,
         isSearchOpen,
         setIsSearchOpen,
         isSettingsOpen,

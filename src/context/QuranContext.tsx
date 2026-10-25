@@ -78,13 +78,19 @@ interface QuranContextType {
   updateAdhkarReminders: (newReminders: Partial<AdhkarReminders>) => void;
   sendTestAdhkarNotification: (type?: 'morning' | 'evening') => void;
 
-  // Modals
+  // Modals & PWA
   isSearchOpen: boolean;
   setIsSearchOpen: (open: boolean) => void;
   isSettingsOpen: boolean;
   setIsSettingsOpen: (open: boolean) => void;
   isQRCodeOpen: boolean;
   setIsQRCodeOpen: (open: boolean) => void;
+  isInstallModalOpen: boolean;
+  setIsInstallModalOpen: (open: boolean) => void;
+  installPWA: () => void;
+  canInstallPWA: boolean;
+  isMobileLocked: boolean;
+  setIsMobileLocked: (locked: boolean) => void;
 }
 
 const DEFAULT_SETTINGS: ReadingSettings = {
@@ -331,6 +337,51 @@ export const QuranProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
   const [isQRCodeOpen, setIsQRCodeOpen] = useState<boolean>(false);
+  const [isInstallModalOpen, setIsInstallModalOpen] = useState<boolean>(false);
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [canInstallPWA, setCanInstallPWA] = useState<boolean>(false);
+  const [isMobileLocked, setIsMobileLocked] = useState<boolean>(() => {
+    try {
+      const saved = localStorage.getItem('quran_mobile_locked');
+      return saved !== null ? JSON.parse(saved) : true;
+    } catch {
+      return true;
+    }
+  });
+
+  const toggleMobileLock = (locked: boolean) => {
+    setIsMobileLocked(locked);
+    try {
+      localStorage.setItem('quran_mobile_locked', JSON.stringify(locked));
+    } catch {}
+  };
+
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (e: Event) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setCanInstallPWA(true);
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    };
+  }, []);
+
+  const installPWA = () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult: { outcome: string }) => {
+        if (choiceResult.outcome === 'accepted') {
+          setCanInstallPWA(false);
+          setDeferredPrompt(null);
+        }
+      });
+    } else {
+      setIsInstallModalOpen(true);
+    }
+  };
 
   useEffect(() => {
     const audio = new Audio();
@@ -542,6 +593,12 @@ export const QuranProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         setIsSettingsOpen,
         isQRCodeOpen,
         setIsQRCodeOpen,
+        isInstallModalOpen,
+        setIsInstallModalOpen,
+        installPWA,
+        canInstallPWA,
+        isMobileLocked,
+        setIsMobileLocked: toggleMobileLock,
       }}
     >
       {children}

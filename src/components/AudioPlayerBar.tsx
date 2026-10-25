@@ -79,7 +79,7 @@ export const AudioPlayerBar: React.FC = () => {
     <>
       {/* FULLSCREEN MOBILE EXPANDED PLAYER SHEET */}
       {isMobileExpanded && (
-        <div className="fixed inset-0 z-50 md:hidden bg-gradient-to-b from-emerald-950 via-[#07241b] to-[#04140f] text-white flex flex-col justify-between p-6 animate-in slide-in-from-bottom duration-300">
+        <div className="fixed sm:absolute inset-0 z-50 bg-gradient-to-b from-emerald-950 via-[#07241b] to-[#04140f] text-white flex flex-col justify-between p-6 animate-in slide-in-from-bottom duration-300">
           
           {/* Top Collapse Bar */}
           <div className="flex items-center justify-between pt-2">
@@ -221,9 +221,9 @@ export const AudioPlayerBar: React.FC = () => {
         </div>
       )}
 
-      {/* DOCKED BOTTOM AUDIO PLAYER BAR (Positioned above bottom nav on mobile) */}
-      <div className="fixed bottom-16 md:bottom-0 left-0 right-0 z-30 md:z-50 transition-all duration-300 px-2 sm:px-0 pb-1 sm:pb-0">
-        <div className="bg-white/95 dark:bg-[#0c1622]/95 backdrop-blur-xl rounded-2xl sm:rounded-none border border-emerald-900/15 dark:border-emerald-500/20 shadow-2xl overflow-hidden">
+      {/* DOCKED BOTTOM AUDIO PLAYER BAR (Positioned above bottom nav) */}
+      <div className="sticky bottom-16 left-0 right-0 z-30 transition-all duration-300 px-1 pb-1 shrink-0">
+        <div className="bg-white/95 dark:bg-[#0c1622]/95 backdrop-blur-xl rounded-2xl border border-emerald-900/15 dark:border-emerald-500/20 shadow-xl overflow-hidden">
           
           {/* Progress Bar (Scrubbable) */}
           <div className="relative w-full h-1 bg-slate-200 dark:bg-slate-800 group cursor-pointer">

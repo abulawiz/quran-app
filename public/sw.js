@@ -1,5 +1,5 @@
 // Al-Qur'an Al-Kareem Service Worker
-const CACHE_NAME = 'quran-kareem-cache-v2';
+const CACHE_NAME = 'quran-kareem-cache-v3';
 const STATIC_ASSETS = [
   '/',
   '/index.html',

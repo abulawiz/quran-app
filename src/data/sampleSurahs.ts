@@ -575,5 +575,412 @@ export const OFFLINE_SURAHS: Record<number, SurahDetail> = {
         page: 604
       }
     ]
+  },
+  94: {
+    number: 94,
+    name: "الشَّرْح",
+    englishName: "Ash-Sharh",
+    englishNameTranslation: "The Relief",
+    numberOfAyahs: 8,
+    revelationType: "Meccan",
+    startJuz: 30,
+    ayahs: [
+      {
+        number: 6094,
+        numberInSurah: 1,
+        text: "أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ",
+        translation: "Did We not expand for you, [O Muhammad], your breast?",
+        transliteration: "Alam nashrah laka sadrak",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6094.mp3",
+        juz: 30,
+        page: 596
+      },
+      {
+        number: 6095,
+        numberInSurah: 2,
+        text: "وَوَضَعْنَا عَنكَ وِزْرَكَ",
+        translation: "And We removed from you your burden",
+        transliteration: "Wa wada'na 'anka wizrak",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6095.mp3",
+        juz: 30,
+        page: 596
+      },
+      {
+        number: 6096,
+        numberInSurah: 3,
+        text: "الَّذِي أَنقَضَ ظَهْرَكَ",
+        translation: "Which had weighed upon your back",
+        transliteration: "Alladhee anqada zahrak",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6096.mp3",
+        juz: 30,
+        page: 596
+      },
+      {
+        number: 6097,
+        numberInSurah: 4,
+        text: "وَرَفَعْنَا لَكَ ذِكْرَكَ",
+        translation: "And raised high for you your repute.",
+        transliteration: "Wa rafa'na laka dhikrak",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6097.mp3",
+        juz: 30,
+        page: 596
+      },
+      {
+        number: 6098,
+        numberInSurah: 5,
+        text: "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا",
+        translation: "For indeed, with hardship [will be] ease.",
+        transliteration: "Fa inna ma'al-'usri yusra",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6098.mp3",
+        juz: 30,
+        page: 596
+      },
+      {
+        number: 6099,
+        numberInSurah: 6,
+        text: "إِنَّ مَعَ الْعُسْرِ يُسْرًا",
+        translation: "Indeed, with hardship [will be] ease.",
+        transliteration: "Inna ma'al-'usri yusra",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6099.mp3",
+        juz: 30,
+        page: 596
+      },
+      {
+        number: 6100,
+        numberInSurah: 7,
+        text: "فَإِذَا فَرَغْتَ فَانصَبْ",
+        translation: "So when you have finished [your duties], then stand up [for worship].",
+        transliteration: "Fa idha faraghta fansab",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6100.mp3",
+        juz: 30,
+        page: 596
+      },
+      {
+        number: 6101,
+        numberInSurah: 8,
+        text: "وَإِلَىٰ رَبِّكَ فَارْغَب",
+        translation: "And to your Lord direct [your] longing.",
+        transliteration: "Wa ila rabbika farghab",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6101.mp3",
+        juz: 30,
+        page: 596
+      }
+    ]
+  },
+  97: {
+    number: 97,
+    name: "القَدْر",
+    englishName: "Al-Qadr",
+    englishNameTranslation: "The Power",
+    numberOfAyahs: 5,
+    revelationType: "Meccan",
+    startJuz: 30,
+    ayahs: [
+      {
+        number: 6126,
+        numberInSurah: 1,
+        text: "إِنَّا أَنزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ",
+        translation: "Indeed, We sent the Qur'an down during the Night of Decree.",
+        transliteration: "Innaa anzalnaahu fee laylatil-qadr",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6126.mp3",
+        juz: 30,
+        page: 598
+      },
+      {
+        number: 6127,
+        numberInSurah: 2,
+        text: "وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ",
+        translation: "And what can make you know what is the Night of Decree?",
+        transliteration: "Wa maa adraaka maa laylatul-qadr",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6127.mp3",
+        juz: 30,
+        page: 598
+      },
+      {
+        number: 6128,
+        numberInSurah: 3,
+        text: "لَيْلَةُ الْقَدْرِ خَيْرٌ مِّنْ أَلْفِ شَهْرٍ",
+        translation: "The Night of Decree is better than a thousand months.",
+        transliteration: "Laylatul-qadri khayrum min alfee shahr",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6128.mp3",
+        juz: 30,
+        page: 598
+      },
+      {
+        number: 6129,
+        numberInSurah: 4,
+        text: "تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا بِإِذْنِ رَبِّهِم مِّن كُلِّ أَمْرٍ",
+        translation: "The angels and the Spirit descend therein by permission of their Lord for every matter.",
+        transliteration: "Tanazzalul-malaa'ikatu war-roohu feehaa bi-idhni rabbihim min kulli amr",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6129.mp3",
+        juz: 30,
+        page: 598
+      },
+      {
+        number: 6130,
+        numberInSurah: 5,
+        text: "سَلَامٌ هِيَ حَتَّىٰ مَطْلَعِ الْفَجْرِ",
+        translation: "Peace it is until the emergence of dawn.",
+        transliteration: "Salaamun hiya hattaa matla'il-fajr",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6130.mp3",
+        juz: 30,
+        page: 598
+      }
+    ]
+  },
+  103: {
+    number: 103,
+    name: "العَصْر",
+    englishName: "Al-Asr",
+    englishNameTranslation: "The Declining Day",
+    numberOfAyahs: 3,
+    revelationType: "Meccan",
+    startJuz: 30,
+    ayahs: [
+      {
+        number: 6177,
+        numberInSurah: 1,
+        text: "وَالْعَصْرِ",
+        translation: "By time,",
+        transliteration: "Wal-'asr",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6177.mp3",
+        juz: 30,
+        page: 601
+      },
+      {
+        number: 6178,
+        numberInSurah: 2,
+        text: "إِنَّ الْإِنسَانَ لَفِي خُسْرٍ",
+        translation: "Indeed, mankind is in loss,",
+        transliteration: "Innal-insaana lafee khusr",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6178.mp3",
+        juz: 30,
+        page: 601
+      },
+      {
+        number: 6179,
+        numberInSurah: 3,
+        text: "إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ",
+        translation: "Except for those who have believed and done righteous deeds and advised each other to truth and advised each other to patience.",
+        transliteration: "Illal-ladheena aamanoo wa 'amilus-saalihaati wa tawaasaw bil-haqqi wa tawaasaw bis-sabr",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6179.mp3",
+        juz: 30,
+        page: 601
+      }
+    ]
+  },
+  108: {
+    number: 108,
+    name: "الكَوْثَر",
+    englishName: "Al-Kawthar",
+    englishNameTranslation: "The Abundance",
+    numberOfAyahs: 3,
+    revelationType: "Meccan",
+    startJuz: 30,
+    ayahs: [
+      {
+        number: 6195,
+        numberInSurah: 1,
+        text: "إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ",
+        translation: "Indeed, We have granted you, [O Muhammad], al-Kawthar.",
+        transliteration: "Innaa a'taynaakal-kawthar",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6195.mp3",
+        juz: 30,
+        page: 602
+      },
+      {
+        number: 6196,
+        numberInSurah: 2,
+        text: "فَصَلِّ لِرَبِّكَ وَانْحَرْ",
+        translation: "So pray to your Lord and sacrifice [to Him alone].",
+        transliteration: "Fasalli lirabbika wanhar",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6196.mp3",
+        juz: 30,
+        page: 602
+      },
+      {
+        number: 6197,
+        numberInSurah: 3,
+        text: "إِنَّ شَانِئَكَ هُوَ الْأَبْتَرُ",
+        translation: "Indeed, your enemy is the one cut off.",
+        transliteration: "Inna shaani'aka huwal-abtar",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6197.mp3",
+        juz: 30,
+        page: 602
+      }
+    ]
+  },
+  109: {
+    number: 109,
+    name: "الكَافِرُون",
+    englishName: "Al-Kaafiroon",
+    englishNameTranslation: "The Disbelievers",
+    numberOfAyahs: 6,
+    revelationType: "Meccan",
+    startJuz: 30,
+    ayahs: [
+      {
+        number: 6198,
+        numberInSurah: 1,
+        text: "قُلْ يَا أَيُّهَا الْكَافِرُونَ",
+        translation: "Say, \"O disbelievers,\"",
+        transliteration: "Qul yaa ayyuhal-kaafiroon",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6198.mp3",
+        juz: 30,
+        page: 603
+      },
+      {
+        number: 6199,
+        numberInSurah: 2,
+        text: "لَا أَعْبُدُ مَا تَعْبُدُونَ",
+        translation: "\"I do not worship what you worship.\"",
+        transliteration: "Laa a'budu maa ta'budoon",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6199.mp3",
+        juz: 30,
+        page: 603
+      },
+      {
+        number: 6200,
+        numberInSurah: 3,
+        text: "وَلَا أَنتُمْ عَابِدُونَ مَا أَعْبُدُ",
+        translation: "\"Nor are you worshippers of what I worship.\"",
+        transliteration: "Wa laa antum 'aabidoona maa a'bud",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6200.mp3",
+        juz: 30,
+        page: 603
+      },
+      {
+        number: 6201,
+        numberInSurah: 4,
+        text: "وَلَا أَنَا عَابِدٌ مَّا عَبَدتُّمْ",
+        translation: "\"Nor will I be a worshipper of what you worship.\"",
+        transliteration: "Wa laa ana 'aabidum maa 'abattum",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6201.mp3",
+        juz: 30,
+        page: 603
+      },
+      {
+        number: 6202,
+        numberInSurah: 5,
+        text: "وَلَا أَنتُمْ عَابِدُونَ مَا أَعْبُدُ",
+        translation: "\"Nor will you be worshippers of what I worship.\"",
+        transliteration: "Wa laa antum 'aabidoona maa a'bud",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6202.mp3",
+        juz: 30,
+        page: 603
+      },
+      {
+        number: 6203,
+        numberInSurah: 6,
+        text: "لَكُمْ دِينُكُمْ وَلِيَ دِينِ",
+        translation: "\"For you is your religion, and for me is my religion.\"",
+        transliteration: "Lakum deenukum wa liya deen",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6203.mp3",
+        juz: 30,
+        page: 603
+      }
+    ]
+  },
+  110: {
+    number: 110,
+    name: "النَّصْر",
+    englishName: "An-Nasr",
+    englishNameTranslation: "The Divine Support",
+    numberOfAyahs: 3,
+    revelationType: "Medinan",
+    startJuz: 30,
+    ayahs: [
+      {
+        number: 6204,
+        numberInSurah: 1,
+        text: "إِذَا جَاءَ نَصْرُ اللَّهِ وَالْفَتْحُ",
+        translation: "When the victory of Allah has come and the conquest,",
+        transliteration: "Idhaa jaaa'a nasrul-laahi wal-fath",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6204.mp3",
+        juz: 30,
+        page: 603
+      },
+      {
+        number: 6205,
+        numberInSurah: 2,
+        text: "وَرَأَيْتَ النَّاسَ يَدْخُلُونَ فِي دِينِ اللَّهِ أَفْوَاجًا",
+        translation: "And you see the people entering into the religion of Allah in multitudes,",
+        transliteration: "Wa ra'aytan-naasa yadkhuloona fee deenil-laahi afwaajaa",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6205.mp3",
+        juz: 30,
+        page: 603
+      },
+      {
+        number: 6206,
+        numberInSurah: 3,
+        text: "فَسَبِّحْ بِحَمْدِ رَبِّكَ وَاسْتَغْفِرْهُ ۚ إِنَّهُ كَانَ تَوَّابًا",
+        translation: "Then exalt [Him] with praise of your Lord and ask forgiveness of Him. Indeed, He is ever Accepting of repentance.",
+        transliteration: "Fasabbih bihamdi rabbika wastaghfirh; innahoo kaana tawwaabaa",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6206.mp3",
+        juz: 30,
+        page: 603
+      }
+    ]
+  },
+  111: {
+    number: 111,
+    name: "المَسَد",
+    englishName: "Al-Masad",
+    englishNameTranslation: "The Palm Fibre",
+    numberOfAyahs: 5,
+    revelationType: "Meccan",
+    startJuz: 30,
+    ayahs: [
+      {
+        number: 6207,
+        numberInSurah: 1,
+        text: "تَبَّتْ يَدَا أَبِي لَهَبٍ وَتَبَّ",
+        translation: "May the hands of Abu Lahab be ruined, and ruined is he.",
+        transliteration: "Tabbat yadaaa abee Lahabinw-wa tabb",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6207.mp3",
+        juz: 30,
+        page: 604
+      },
+      {
+        number: 6208,
+        numberInSurah: 2,
+        text: "مَا أَغْنَىٰ عَنْهُ مَالُهُ وَمَا كَسَبَ",
+        translation: "His wealth will not avail him or that which he gained.",
+        transliteration: "Maaa aghnaa 'anhu maaluhoo wa maa kasab",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6208.mp3",
+        juz: 30,
+        page: 604
+      },
+      {
+        number: 6209,
+        numberInSurah: 3,
+        text: "سَيَصْلَىٰ نَارًا ذَاتَ لَهَبٍ",
+        translation: "He will [enter to] burn in a Fire of [blazing] flame",
+        transliteration: "Sayaslaa naaran dhaata lahab",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6209.mp3",
+        juz: 30,
+        page: 604
+      },
+      {
+        number: 6210,
+        numberInSurah: 4,
+        text: "وَامْرَأَتُهُ حَمَّالَةَ الْحَطَبِ",
+        translation: "And his wife [as well] - the carrier of firewood.",
+        transliteration: "Wamra'atuhoo hammaalatal-hatab",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6210.mp3",
+        juz: 30,
+        page: 604
+      },
+      {
+        number: 6211,
+        numberInSurah: 5,
+        text: "فِي جِيدِهَا حَبْلٌ مِّن مَّسَدٍ",
+        translation: "Around her neck is a rope of [twisted] fiber.",
+        transliteration: "Fee jeedihaa hablum mim-masad",
+        audio: "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6211.mp3",
+        juz: 30,
+        page: 604
+      }
+    ]
   }
 };

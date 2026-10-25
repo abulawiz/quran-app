@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { QuranProvider, useQuran } from './context/QuranContext';
-import { Navbar } from './components/Navbar';
+import { MobileFrame } from './components/MobileFrame';
+import { MobileHeader } from './components/MobileHeader';
 import { SurahList } from './components/SurahList';
 import { SurahView } from './components/SurahView';
 import { JuzList } from './components/JuzList';
@@ -15,13 +16,13 @@ import { SettingsModal } from './components/SettingsModal';
 import { TafseerModal } from './components/TafseerModal';
 import { PrayerTimesModal } from './components/PrayerTimesModal';
 import { QRCodeModal } from './components/QRCodeModal';
+import { InstallModal } from './components/InstallModal';
 import { LoadingScreen } from './components/LoadingScreen';
 import { AboutAuthorView } from './components/AboutAuthorView';
 import type { TafseerResult } from './services/quranApi';
-import { Clock, QrCode, User } from 'lucide-react';
 
 const QuranMain: React.FC = () => {
-  const { currentTab, setCurrentTab, setIsQRCodeOpen } = useQuran();
+  const { currentTab } = useQuran();
 
   const [tafseerData, setTafseerData] = useState<{
     isOpen: boolean;
@@ -59,15 +60,15 @@ const QuranMain: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-[#0a1118] text-slate-800 dark:text-slate-100 transition-colors duration-200">
+    <MobileFrame>
       {/* Smooth Loading Screen */}
       <LoadingScreen />
 
-      {/* Top Navigation Bar */}
-      <Navbar />
+      {/* Unified Mobile Header */}
+      <MobileHeader />
 
-      {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-4 sm:pt-8 pb-32 md:pb-24">
+      {/* Main Mobile Screen Viewport */}
+      <main className="flex-1 w-full px-3 py-3 pb-24">
         {currentTab === 'surahs' && <SurahList />}
         {currentTab === 'surah-detail' && <SurahView onOpenTafseer={handleOpenTafseer} />}
         {currentTab === 'juz' && <JuzList />}
@@ -78,48 +79,7 @@ const QuranMain: React.FC = () => {
         {currentTab === 'author' && <AboutAuthorView />}
       </main>
 
-      {/* Footer (Desktop only or clean minimal) */}
-      <footer className="mt-auto border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#0c1622] py-8 text-center text-xs text-slate-500 dark:text-slate-400 hidden md:block">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <span className="font-arabic text-base font-bold text-emerald-800 dark:text-emerald-400">
-              القرآن الكريم
-            </span>
-            <span>•</span>
-            <span>The Noble Quran Web & Mobile PWA</span>
-          </div>
-
-          <div className="flex items-center gap-4 text-xs">
-            <button
-              onClick={() => setCurrentTab('author')}
-              className="flex items-center gap-1.5 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-medium text-emerald-700 dark:text-emerald-400"
-            >
-              <User className="w-3.5 h-3.5" />
-              <span>About Author</span>
-            </button>
-            <span>•</span>
-            <button
-              onClick={() => setIsPrayerTimesOpen(true)}
-              className="flex items-center gap-1.5 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-medium"
-            >
-              <Clock className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Prayer Times Modal</span>
-            </button>
-            <span>•</span>
-            <button
-              onClick={() => setIsQRCodeOpen(true)}
-              className="flex items-center gap-1.5 hover:text-amber-600 dark:hover:text-amber-400 transition-colors font-medium text-amber-600 dark:text-amber-400"
-            >
-              <QrCode className="w-3.5 h-3.5" />
-              <span>Expo Go / Mobile QR</span>
-            </button>
-            <span>•</span>
-            <span className="italic">"Verily, in the remembrance of Allah do hearts find rest." (13:28)</span>
-          </div>
-        </div>
-      </footer>
-
-      {/* Sticky Bottom Audio Player Bar */}
+      {/* Docked Mini Audio Player Bar */}
       <AudioPlayerBar />
 
       {/* Native Mobile Bottom Navigation Bar */}
@@ -129,6 +89,7 @@ const QuranMain: React.FC = () => {
       <SearchModal />
       <SettingsModal />
       <QRCodeModal />
+      <InstallModal />
       <TafseerModal
         isOpen={tafseerData.isOpen}
         onClose={handleCloseTafseer}
@@ -141,7 +102,7 @@ const QuranMain: React.FC = () => {
         isOpen={isPrayerTimesOpen}
         onClose={() => setIsPrayerTimesOpen(false)}
       />
-    </div>
+    </MobileFrame>
   );
 };
 

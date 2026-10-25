@@ -14,7 +14,9 @@ import {
   Copy, 
   Check, 
   BookOpenText, 
-  Volume2
+  Volume2,
+  WifiOff,
+  RotateCw
 } from 'lucide-react';
 
 interface SurahViewProps {
@@ -270,14 +272,64 @@ export const SurahView: React.FC<SurahViewProps> = ({ onOpenTafseer }) => {
       )}
 
       {error && (
-        <div className="p-6 rounded-2xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 text-center">
-          <p className="text-sm font-semibold text-red-600 dark:text-red-400">{error}</p>
-          <button
-            onClick={() => setSelectedSurahNumber(selectedSurahNumber)}
-            className="mt-3 px-4 py-1.5 rounded-lg bg-red-600 text-white text-xs font-semibold hover:bg-red-700"
-          >
-            Retry Loading
-          </button>
+        <div className="p-6 rounded-3xl bg-amber-500/10 border border-amber-500/30 text-center space-y-4">
+          <div className="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center mx-auto">
+            <WifiOff className="w-6 h-6" />
+          </div>
+          <div>
+            <h3 className="font-bold text-base text-slate-800 dark:text-slate-100">
+              Offline Library Notice
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-md mx-auto">
+              Surah {currentSurahMeta?.englishName} ({currentSurahMeta?.name}) has not been cached in your offline storage yet.
+            </p>
+          </div>
+
+          <div className="pt-2">
+            <p className="text-xs font-semibold text-emerald-800 dark:text-emerald-400 uppercase tracking-wider mb-2">
+              100% Available Offline Surahs:
+            </p>
+            <div className="flex flex-wrap justify-center gap-1.5 max-w-lg mx-auto">
+              {[
+                { n: 1, name: 'Al-Fatihah' },
+                { n: 67, name: 'Al-Mulk' },
+                { n: 94, name: 'Ash-Sharh' },
+                { n: 97, name: 'Al-Qadr' },
+                { n: 103, name: 'Al-Asr' },
+                { n: 108, name: 'Al-Kawthar' },
+                { n: 109, name: 'Al-Kafirun' },
+                { n: 110, name: 'An-Nasr' },
+                { n: 111, name: 'Al-Masad' },
+                { n: 112, name: 'Al-Ikhlas' },
+                { n: 113, name: 'Al-Falaq' },
+                { n: 114, name: 'An-Nas' },
+              ].map((s) => (
+                <button
+                  key={s.n}
+                  onClick={() => setSelectedSurahNumber(s.n)}
+                  className="px-2.5 py-1 rounded-xl text-xs font-medium bg-white dark:bg-slate-800 border border-emerald-500/30 text-emerald-800 dark:text-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-950 transition-colors shadow-sm"
+                >
+                  {s.n}. {s.name}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex items-center justify-center gap-2 pt-2">
+            <button
+              onClick={() => setSelectedSurahNumber(selectedSurahNumber)}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-semibold transition-all shadow"
+            >
+              <RotateCw className="w-3.5 h-3.5" />
+              <span>Retry Connection</span>
+            </button>
+            <button
+              onClick={() => setCurrentTab('surahs')}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-300 transition-all"
+            >
+              <span>Back to Surah List</span>
+            </button>
+          </div>
         </div>
       )}
 

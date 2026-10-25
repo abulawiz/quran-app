@@ -79,7 +79,7 @@ export async function fetchSurah(
     return OFFLINE_SURAHS[surahNumber];
   }
 
-  // Check any cached edition of this Surah
+  // Check any cached edition of this Surah in localStorage
   try {
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
@@ -91,6 +91,48 @@ export async function fetchSurah(
   } catch {}
 
   throw new Error(`Unable to load Surah ${surahNumber}. Please connect to the internet once to cache this Surah.`);
+}
+
+export function isSurahAvailableOffline(surahNumber: number): boolean {
+  if (OFFLINE_SURAHS[surahNumber]) return true;
+  try {
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith(`${CACHE_PREFIX}${surahNumber}_`)) {
+        return true;
+      }
+    }
+  } catch {}
+  return false;
+}
+
+export function getOfflineAvailableSurahs(): number[] {
+  const surahsSet = new Set<number>(Object.keys(OFFLINE_SURAHS).map(Number));
+  try {
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith(CACHE_PREFIX)) {
+        const parts = key.replace(CACHE_PREFIX, '').split('_');
+        const num = parseInt(parts[0], 10);
+        if (!isNaN(num)) surahsSet.add(num);
+      }
+    }
+  } catch {}
+  return Array.from(surahsSet).sort((a, b) => a - b);
+}
+
+export async function downloadSurahForOffline(
+  surahNumber: number,
+  translationEdition = 'en.sahih',
+  reciterApiId = 'ar.alafasy'
+): Promise<boolean> {
+  try {
+    await fetchSurah(surahNumber, translationEdition, reciterApiId);
+    return true;
+  } catch (err) {
+    console.warn(`Failed to pre-cache Surah ${surahNumber}:`, err);
+    return false;
+  }
 }
 
 export function getAyahAudioUrl(globalAyahNumber: number, reciterApiId = 'ar.alafasy'): string {

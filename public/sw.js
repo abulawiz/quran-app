@@ -1,11 +1,12 @@
 // Al-Qur'an Al-Kareem Service Worker
-const CACHE_NAME = 'quran-kareem-cache-v3';
+const CACHE_NAME = 'quran-kareem-cache-v4';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
   '/manifest.json',
   '/quran-icon.svg',
   '/favicon.svg',
+  '/author.jpg',
 ];
 
 // Pre-cache static shell on install

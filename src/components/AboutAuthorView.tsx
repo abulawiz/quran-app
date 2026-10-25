@@ -63,16 +63,21 @@ export const AboutAuthorView: React.FC = () => {
 
         <div className="relative z-10 flex flex-col sm:flex-row items-center sm:items-start gap-6">
           
-          {/* Avatar / Monogram */}
+          {/* Author Portrait Photo */}
           <div className="relative shrink-0">
-            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-gradient-to-tr from-amber-400 via-emerald-600 to-teal-500 p-1 shadow-2xl">
-              <div className="w-full h-full rounded-[22px] bg-[#063024] flex items-center justify-center text-white">
-                <span className="font-arabic font-extrabold text-3xl sm:text-4xl text-amber-300">
-                  أبو
-                </span>
-              </div>
+            <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1 bg-gradient-to-tr from-amber-400 via-emerald-400 to-teal-300 shadow-2xl ring-4 ring-emerald-500/30">
+              <img
+                src="/author.jpg"
+                alt="Abu Lawizat (@abulawiz)"
+                className="w-full h-full object-cover rounded-full shadow-inner bg-[#063024]"
+                onError={(e) => {
+                  // Fallback if image fails to load
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                }}
+              />
             </div>
-            <div className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-emerald-500 text-white flex items-center justify-center border-2 border-[#032e22] shadow" title="Verified Creator">
+            <div className="absolute bottom-0 right-1 w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center border-2 border-[#032e22] shadow-lg" title="Verified Creator">
               <Check className="w-4 h-4 stroke-[3px]" />
             </div>
           </div>

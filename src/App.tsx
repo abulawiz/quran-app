@@ -6,7 +6,10 @@ import { SurahView } from './components/SurahView';
 import { JuzList } from './components/JuzList';
 import { BookmarksView } from './components/BookmarksView';
 import { TasbihView } from './components/TasbihView';
+import { AdhkarView } from './components/AdhkarView';
+import { PrayerTimesView } from './components/PrayerTimesView';
 import { AudioPlayerBar } from './components/AudioPlayerBar';
+import { MobileBottomNav } from './components/MobileBottomNav';
 import { SearchModal } from './components/SearchModal';
 import { SettingsModal } from './components/SettingsModal';
 import { TafseerModal } from './components/TafseerModal';
@@ -63,23 +66,25 @@ const QuranMain: React.FC = () => {
       <Navbar />
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
+      <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-4 sm:pt-8 pb-32 md:pb-24">
         {currentTab === 'surahs' && <SurahList />}
         {currentTab === 'surah-detail' && <SurahView onOpenTafseer={handleOpenTafseer} />}
         {currentTab === 'juz' && <JuzList />}
+        {currentTab === 'adhkar' && <AdhkarView />}
+        {currentTab === 'prayer-times' && <PrayerTimesView />}
         {currentTab === 'bookmarks' && <BookmarksView />}
         {currentTab === 'tasbih' && <TasbihView />}
       </main>
 
-      {/* Footer */}
-      <footer className="mt-auto border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#0c1622] py-8 text-center text-xs text-slate-500 dark:text-slate-400 pb-28">
+      {/* Footer (Desktop only or clean minimal) */}
+      <footer className="mt-auto border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#0c1622] py-8 text-center text-xs text-slate-500 dark:text-slate-400 hidden md:block">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <span className="font-arabic text-base font-bold text-emerald-800 dark:text-emerald-400">
               القرآن الكريم
             </span>
             <span>•</span>
-            <span>The Noble Quran Web & PWA</span>
+            <span>The Noble Quran Web & Mobile PWA</span>
           </div>
 
           <div className="flex items-center gap-4 text-xs">
@@ -88,7 +93,7 @@ const QuranMain: React.FC = () => {
               className="flex items-center gap-1.5 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-medium"
             >
               <Clock className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Prayer Times</span>
+              <span>Prayer Times Modal</span>
             </button>
             <span>•</span>
             <button
@@ -104,8 +109,11 @@ const QuranMain: React.FC = () => {
         </div>
       </footer>
 
-      {/* Sticky Bottom Audio Player Dock */}
+      {/* Sticky Bottom Audio Player Bar */}
       <AudioPlayerBar />
+
+      {/* Native Mobile Bottom Navigation Bar */}
+      <MobileBottomNav />
 
       {/* Modals & Dialogs */}
       <SearchModal />

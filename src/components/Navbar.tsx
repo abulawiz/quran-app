@@ -10,7 +10,9 @@ import {
   Sun, 
   Moon, 
   Headphones,
-  QrCode
+  QrCode,
+  SunMedium,
+  Clock
 } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
@@ -36,7 +38,7 @@ export const Navbar: React.FC = () => {
             onClick={() => setCurrentTab('surahs')}
             className="flex items-center gap-3 cursor-pointer group select-none shrink-0"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-800 to-emerald-600 flex items-center justify-center text-white shadow-md shadow-emerald-900/20 group-hover:scale-105 transition-transform">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-800 to-emerald-600 flex items-center justify-center text-white shadow-md shadow-emerald-900/20 group-hover:scale-105 transition-transform">
               <BookOpen className="w-5 h-5 text-emerald-200" />
             </div>
             <div>
@@ -49,57 +51,64 @@ export const Navbar: React.FC = () => {
                 </span>
               </div>
               <p className="text-[10px] text-slate-500 dark:text-slate-400 hidden sm:block">
-                The Noble Quran • Recitation & Translations
+                The Noble Quran • Recitation & Adhkar
               </p>
             </div>
           </div>
 
-          {/* Nav Tabs */}
-          <nav className="hidden md:flex items-center gap-1 bg-slate-100 dark:bg-slate-800/60 p-1 rounded-xl">
+          {/* Desktop Nav Tabs */}
+          <nav className="hidden md:flex items-center gap-1 bg-slate-100 dark:bg-slate-800/60 p-1 rounded-2xl">
             <button
               onClick={() => setCurrentTab('surahs')}
-              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
                 currentTab === 'surahs' || currentTab === 'surah-detail'
                   ? 'bg-white dark:bg-emerald-800 text-emerald-800 dark:text-emerald-100 shadow-sm'
                   : 'text-slate-600 dark:text-slate-300 hover:text-emerald-700 dark:hover:text-emerald-400'
               }`}
             >
               <BookOpen className="w-3.5 h-3.5" />
-              Surahs (114)
+              Surahs
             </button>
 
             <button
               onClick={() => setCurrentTab('juz')}
-              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
                 currentTab === 'juz'
                   ? 'bg-white dark:bg-emerald-800 text-emerald-800 dark:text-emerald-100 shadow-sm'
                   : 'text-slate-600 dark:text-slate-300 hover:text-emerald-700 dark:hover:text-emerald-400'
               }`}
             >
               <Layers className="w-3.5 h-3.5" />
-              Juz (30)
+              Juz
             </button>
 
             <button
-              onClick={() => setCurrentTab('bookmarks')}
-              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                currentTab === 'bookmarks'
+              onClick={() => setCurrentTab('adhkar')}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                currentTab === 'adhkar'
                   ? 'bg-white dark:bg-emerald-800 text-emerald-800 dark:text-emerald-100 shadow-sm'
                   : 'text-slate-600 dark:text-slate-300 hover:text-emerald-700 dark:hover:text-emerald-400'
               }`}
             >
-              <BookmarkIcon className="w-3.5 h-3.5" />
-              Bookmarks
-              {bookmarks.length > 0 && (
-                <span className="w-4 h-4 rounded-full bg-emerald-600 text-white text-[10px] flex items-center justify-center font-bold">
-                  {bookmarks.length}
-                </span>
-              )}
+              <SunMedium className="w-3.5 h-3.5" />
+              Adhkar
+            </button>
+
+            <button
+              onClick={() => setCurrentTab('prayer-times')}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                currentTab === 'prayer-times'
+                  ? 'bg-white dark:bg-emerald-800 text-emerald-800 dark:text-emerald-100 shadow-sm'
+                  : 'text-slate-600 dark:text-slate-300 hover:text-emerald-700 dark:hover:text-emerald-400'
+              }`}
+            >
+              <Clock className="w-3.5 h-3.5" />
+              Prayers
             </button>
 
             <button
               onClick={() => setCurrentTab('tasbih')}
-              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
                 currentTab === 'tasbih'
                   ? 'bg-white dark:bg-emerald-800 text-emerald-800 dark:text-emerald-100 shadow-sm'
                   : 'text-slate-600 dark:text-slate-300 hover:text-emerald-700 dark:hover:text-emerald-400'
@@ -107,6 +116,23 @@ export const Navbar: React.FC = () => {
             >
               <CircleDot className="w-3.5 h-3.5" />
               Tasbih
+            </button>
+
+            <button
+              onClick={() => setCurrentTab('bookmarks')}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                currentTab === 'bookmarks'
+                  ? 'bg-white dark:bg-emerald-800 text-emerald-800 dark:text-emerald-100 shadow-sm'
+                  : 'text-slate-600 dark:text-slate-300 hover:text-emerald-700 dark:hover:text-emerald-400'
+              }`}
+            >
+              <BookmarkIcon className="w-3.5 h-3.5" />
+              Saved
+              {bookmarks.length > 0 && (
+                <span className="w-4 h-4 rounded-full bg-emerald-600 text-white text-[10px] flex items-center justify-center font-bold">
+                  {bookmarks.length}
+                </span>
+              )}
             </button>
           </nav>
 
@@ -116,7 +142,7 @@ export const Navbar: React.FC = () => {
             {/* Search Trigger */}
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800/80 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium transition-colors"
+              className="flex items-center gap-2 px-3 py-2 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800/80 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium transition-colors"
               title="Search Quran (Ctrl+K)"
             >
               <Search className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
@@ -129,7 +155,7 @@ export const Navbar: React.FC = () => {
             {/* Reciter Pill */}
             <button
               onClick={() => setIsSettingsOpen(true)}
-              className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-medium hover:bg-emerald-100 transition-colors"
+              className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-medium hover:bg-emerald-100 transition-colors"
               title="Change Reciter"
             >
               <Headphones className="w-3.5 h-3.5 text-emerald-600" />
@@ -139,7 +165,7 @@ export const Navbar: React.FC = () => {
             {/* Mobile / Expo Go QR Hub Trigger */}
             <button
               onClick={() => setIsQRCodeOpen(true)}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-300 text-xs font-medium hover:bg-amber-100 dark:hover:bg-amber-900/50 transition-colors shadow-sm"
+              className="flex items-center gap-1.5 px-2.5 py-2 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-300 text-xs font-medium hover:bg-amber-100 dark:hover:bg-amber-900/50 transition-colors shadow-sm"
               title="Scan or generate QR Code for Expo Go / Phone"
             >
               <QrCode className="w-4 h-4 text-amber-600 dark:text-amber-400" />
@@ -149,7 +175,7 @@ export const Navbar: React.FC = () => {
             {/* Prominent Dark / Light Toggle Switch */}
             <button
               onClick={toggleTheme}
-              className="relative p-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all group shadow-sm"
+              className="relative p-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all group shadow-sm"
               title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             >
               {isDarkMode ? (
@@ -168,7 +194,7 @@ export const Navbar: React.FC = () => {
             {/* Settings Trigger */}
             <button
               onClick={() => setIsSettingsOpen(true)}
-              className="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className="p-2.5 rounded-2xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               title="Settings"
             >
               <SettingsIcon className="w-4 h-4" />
@@ -177,61 +203,6 @@ export const Navbar: React.FC = () => {
           </div>
 
         </div>
-
-        {/* Mobile Navigation Bottom Bar */}
-        <div className="flex md:hidden items-center justify-around py-2 border-t border-slate-100 dark:border-slate-800 text-xs">
-          <button
-            onClick={() => setCurrentTab('surahs')}
-            className={`flex flex-col items-center gap-0.5 ${
-              currentTab === 'surahs' || currentTab === 'surah-detail'
-                ? 'text-emerald-600 dark:text-emerald-400 font-bold'
-                : 'text-slate-500'
-            }`}
-          >
-            <BookOpen className="w-4 h-4" />
-            <span>Surahs</span>
-          </button>
-          <button
-            onClick={() => setCurrentTab('juz')}
-            className={`flex flex-col items-center gap-0.5 ${
-              currentTab === 'juz' ? 'text-emerald-600 dark:text-emerald-400 font-bold' : 'text-slate-500'
-            }`}
-          >
-            <Layers className="w-4 h-4" />
-            <span>Juz</span>
-          </button>
-          <button
-            onClick={() => setCurrentTab('bookmarks')}
-            className={`flex flex-col items-center gap-0.5 relative ${
-              currentTab === 'bookmarks' ? 'text-emerald-600 dark:text-emerald-400 font-bold' : 'text-slate-500'
-            }`}
-          >
-            <BookmarkIcon className="w-4 h-4" />
-            <span>Saved</span>
-            {bookmarks.length > 0 && (
-              <span className="absolute -top-1 right-2 w-3.5 h-3.5 rounded-full bg-emerald-600 text-white text-[9px] flex items-center justify-center font-bold">
-                {bookmarks.length}
-              </span>
-            )}
-          </button>
-          <button
-            onClick={() => setCurrentTab('tasbih')}
-            className={`flex flex-col items-center gap-0.5 ${
-              currentTab === 'tasbih' ? 'text-emerald-600 dark:text-emerald-400 font-bold' : 'text-slate-500'
-            }`}
-          >
-            <CircleDot className="w-4 h-4" />
-            <span>Tasbih</span>
-          </button>
-          <button
-            onClick={() => setIsQRCodeOpen(true)}
-            className="flex flex-col items-center gap-0.5 text-amber-600 dark:text-amber-400"
-          >
-            <QrCode className="w-4 h-4" />
-            <span>QR Hub</span>
-          </button>
-        </div>
-
       </div>
     </header>
   );

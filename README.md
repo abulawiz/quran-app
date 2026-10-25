@@ -19,6 +19,14 @@
 ## ✨ Features
 
 - 📖 **Complete 114 Surahs & 30 Juz Browser**: Complete Arabic text, English transliterations, verse counts, revelation classification (Meccan/Medinan), and Juz mappings.
+- 🌅 **Morning & Evening Adhkar (أذكار الصباح والمساء)**:
+  - Authentic morning, evening, after-prayer, and bedtime supplications with virtues & Hadith citations.
+  - Interactive tactile tap counter with haptic feedback and gentle completion chimes.
+  - Morning & Evening scheduled push reminder notifications with customizable alarm times.
+- 📱 **Native Mobile-First UI**:
+  - iOS/Android style bottom navigation dock with safe-area padding.
+  - Floating mini audio player with tap-to-expand fullscreen player sheet.
+  - Inline quick font-size stepper (`A-` / `A+`) in the Quran reader for seamless mobile reading.
 - 🎙️ **Synchronized Verse-by-Verse Audio**:
   - Highlights each reciting verse in real-time with smooth scrolling.
   - Interactive equalizer animation when audio is playing.

@@ -4,10 +4,36 @@ import { RECITERS_LIST } from '../data/reciters';
 import { SURAHS_LIST } from '../data/surahs';
 import { getAyahAudioUrl } from '../services/quranApi';
 
+export interface AdhkarReminders {
+  morningEnabled: boolean;
+  morningTime: string;
+  eveningEnabled: boolean;
+  eveningTime: string;
+}
+
+export const playChime = () => {
+  try {
+    const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+    if (!AudioCtx) return;
+    const ctx = new AudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(587.33, ctx.currentTime); // D5
+    osc.frequency.exponentialRampToValueAtTime(880.00, ctx.currentTime + 0.2); // A5
+    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.5);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.5);
+  } catch {}
+};
+
 interface QuranContextType {
   // Navigation & View
-  currentTab: 'surahs' | 'surah-detail' | 'juz' | 'bookmarks' | 'tasbih';
-  setCurrentTab: (tab: 'surahs' | 'surah-detail' | 'juz' | 'bookmarks' | 'tasbih') => void;
+  currentTab: 'surahs' | 'surah-detail' | 'juz' | 'bookmarks' | 'tasbih' | 'adhkar' | 'prayer-times';
+  setCurrentTab: (tab: 'surahs' | 'surah-detail' | 'juz' | 'bookmarks' | 'tasbih' | 'adhkar' | 'prayer-times') => void;
   selectedSurahNumber: number;
   setSelectedSurahNumber: (num: number) => void;
   openSurah: (surahNumber: number, targetAyahNumber?: number) => void;
@@ -47,6 +73,11 @@ interface QuranContextType {
   toggleTheme: () => void;
   isDarkMode: boolean;
 
+  // Adhkar Reminders
+  adhkarReminders: AdhkarReminders;
+  updateAdhkarReminders: (newReminders: Partial<AdhkarReminders>) => void;
+  sendTestAdhkarNotification: (type?: 'morning' | 'evening') => void;
+
   // Modals
   isSearchOpen: boolean;
   setIsSearchOpen: (open: boolean) => void;
@@ -72,9 +103,91 @@ const DEFAULT_SETTINGS: ReadingSettings = {
 const QuranContext = createContext<QuranContextType | undefined>(undefined);
 
 export const QuranProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [currentTab, setCurrentTab] = useState<'surahs' | 'surah-detail' | 'juz' | 'bookmarks' | 'tasbih'>('surahs');
+  const [currentTab, setCurrentTab] = useState<'surahs' | 'surah-detail' | 'juz' | 'bookmarks' | 'tasbih' | 'adhkar' | 'prayer-times'>('surahs');
   const [selectedSurahNumber, setSelectedSurahNumber] = useState<number>(1);
   const [targetAyahScroll, setTargetAyahScroll] = useState<number | null>(null);
+
+  // Adhkar Reminders
+  const [adhkarReminders, setAdhkarReminders] = useState<AdhkarReminders>(() => {
+    try {
+      const saved = localStorage.getItem('quran_adhkar_reminders');
+      return saved ? JSON.parse(saved) : {
+        morningEnabled: true,
+        morningTime: '06:30',
+        eveningEnabled: true,
+        eveningTime: '17:30',
+      };
+    } catch {
+      return {
+        morningEnabled: true,
+        morningTime: '06:30',
+        eveningEnabled: true,
+        eveningTime: '17:30',
+      };
+    }
+  });
+
+  const updateAdhkarReminders = (newReminders: Partial<AdhkarReminders>) => {
+    setAdhkarReminders((prev) => {
+      const updated = { ...prev, ...newReminders };
+      try {
+        localStorage.setItem('quran_adhkar_reminders', JSON.stringify(updated));
+      } catch {}
+      return updated;
+    });
+
+    if (('Notification' in window) && Notification.permission !== 'granted' && Notification.permission !== 'denied') {
+      Notification.requestPermission();
+    }
+  };
+
+  const sendTestAdhkarNotification = (type: 'morning' | 'evening' = 'morning') => {
+    playChime();
+    if ('Notification' in window) {
+      if (Notification.permission === 'granted') {
+        const title = type === 'morning' ? '🌅 Morning Adhkar Reminder (أذكار الصباح)' : '🌇 Evening Adhkar Reminder (أذكار المساء)';
+        const body = type === 'morning'
+          ? "Start your day in the protection and remembrance of Allah. Tap to recite morning adhkar."
+          : "Seek peace and divine protection for your evening. Tap to recite evening adhkar.";
+        new Notification(title, {
+          body,
+          icon: '/quran-icon.svg',
+          badge: '/quran-icon.svg',
+        });
+      } else if (Notification.permission !== 'denied') {
+        Notification.requestPermission().then((permission) => {
+          if (permission === 'granted') {
+            sendTestAdhkarNotification(type);
+          }
+        });
+      }
+    }
+  };
+
+  // Background reminder scheduler
+  useEffect(() => {
+    const checkReminders = () => {
+      const now = new Date();
+      const currentHours = String(now.getHours()).padStart(2, '0');
+      const currentMinutes = String(now.getMinutes()).padStart(2, '0');
+      const currentTimeStr = `${currentHours}:${currentMinutes}`;
+      const lastFiredKey = `adhkar_last_fired_${now.toDateString()}`;
+      const lastFired = localStorage.getItem(lastFiredKey) || '';
+
+      if (adhkarReminders.morningEnabled && adhkarReminders.morningTime === currentTimeStr && !lastFired.includes('morning')) {
+        sendTestAdhkarNotification('morning');
+        localStorage.setItem(lastFiredKey, `${lastFired};morning`);
+      }
+
+      if (adhkarReminders.eveningEnabled && adhkarReminders.eveningTime === currentTimeStr && !lastFired.includes('evening')) {
+        sendTestAdhkarNotification('evening');
+        localStorage.setItem(lastFiredKey, `${lastFired};evening`);
+      }
+    };
+
+    const interval = setInterval(checkReminders, 30000); // Check every 30s
+    return () => clearInterval(interval);
+  }, [adhkarReminders]);
 
   const [settings, setSettings] = useState<ReadingSettings>(() => {
     try {
@@ -418,6 +531,10 @@ export const QuranProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         updateSettings,
         toggleTheme,
         isDarkMode,
+
+        adhkarReminders,
+        updateAdhkarReminders,
+        sendTestAdhkarNotification,
 
         isSearchOpen,
         setIsSearchOpen,

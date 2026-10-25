@@ -37,6 +37,7 @@ export const SurahView: React.FC<SurahViewProps> = ({ onOpenTafseer }) => {
     toggleBookmark,
     isBookmarked,
     settings,
+    updateSettings,
   } = useQuran();
 
   const [surahDetail, setSurahDetail] = useState<SurahDetail | null>(null);
@@ -154,7 +155,25 @@ export const SurahView: React.FC<SurahViewProps> = ({ onOpenTafseer }) => {
             <span>All Surahs</span>
           </button>
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1.5">
+            {/* Quick Font Size Adjusters */}
+            <div className="flex items-center bg-slate-100 dark:bg-slate-800 rounded-xl p-0.5 mr-1">
+              <button
+                onClick={() => updateSettings({ arabicFontSize: Math.max(20, settings.arabicFontSize - 2) })}
+                className="px-2 py-1 text-xs font-bold text-slate-600 dark:text-slate-300 hover:text-emerald-600 active:scale-95"
+                title="Decrease font size"
+              >
+                A-
+              </button>
+              <button
+                onClick={() => updateSettings({ arabicFontSize: Math.min(48, settings.arabicFontSize + 2) })}
+                className="px-2 py-1 text-xs font-bold text-slate-600 dark:text-slate-300 hover:text-emerald-600 active:scale-95"
+                title="Increase font size"
+              >
+                A+
+              </button>
+            </div>
+
             <button
               onClick={goToPrevSurah}
               disabled={selectedSurahNumber <= 1}

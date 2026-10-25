@@ -23,7 +23,10 @@ export const QRCodeModal: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'generate' | 'scan'>('generate');
   
   // Local network URL
-  const defaultUrl = 'http://192.168.191.140:3000';
+  const defaultUrl =
+    typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1'
+      ? window.location.origin
+      : 'http://192.168.8.140:3000';
   const [targetUrl, setTargetUrl] = useState(defaultUrl);
   const [qrDataUrl, setQrDataUrl] = useState<string>('');
   const [copied, setCopied] = useState(false);
@@ -223,7 +226,7 @@ export const QRCodeModal: React.FC = () => {
               
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs font-medium">
                 <Wifi className="w-3.5 h-3.5" />
-                <span>LAN Address: 192.168.191.140</span>
+                <span>LAN Address: {targetUrl.replace(/^https?:\/\//, '').split(':')[0] || '192.168.8.140'}</span>
               </div>
 
               {/* QR Image Box with Islamic Frame */}

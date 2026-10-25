@@ -431,7 +431,7 @@ export const QuranProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
     globalAyahNumber += ayahNumberInSurah;
 
-    const url = directAudioUrl || getAyahAudioUrl(globalAyahNumber, reciter.apiIdentifier);
+    const url = directAudioUrl || getAyahAudioUrl(globalAyahNumber, reciter.apiIdentifier, surahNumber);
 
     if (audioRef.current) {
       audioRef.current.src = url;

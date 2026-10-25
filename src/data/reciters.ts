@@ -2,6 +2,16 @@ import type { Reciter } from '../types/quran';
 
 export const RECITERS_LIST: Reciter[] = [
   {
+    id: 'okasha-kameny',
+    name: 'Okasha Kameny',
+    arabicName: 'عكاشة حسن كميني',
+    subfolder: 'okasha-kameny',
+    apiIdentifier: 'ar.okashakameny',
+    style: 'Murattal (Albizi / African Maqamat)',
+    bitrate: '128 kbps',
+    serverUrl: 'https://cdn.mp3quran.net/audio/okasha-kameny/r2/'
+  },
+  {
     id: 'mishary-alafasy',
     name: 'Mishary Rashid Alafasy',
     arabicName: 'مشاري بن راشد العفاسي',

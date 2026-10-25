@@ -38,6 +38,7 @@ export interface Reciter {
   apiIdentifier: string;
   style?: string;
   bitrate?: string;
+  serverUrl?: string;
 }
 
 export interface Bookmark {

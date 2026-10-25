@@ -1,15 +1,17 @@
 import React, { useState, useMemo } from 'react';
 import { useQuran } from '../context/QuranContext';
 import { SURAHS_LIST } from '../data/surahs';
+import { RECITERS_LIST } from '../data/reciters';
 import { 
   Search, 
   Play, 
   Pause, 
   BookOpen, 
   Sparkles, 
-  BookmarkCheck,
-  Grid,
-  List as ListIcon
+  BookmarkCheck, 
+  Grid, 
+  List as ListIcon,
+  Headphones
 } from 'lucide-react';
 
 export const SurahList: React.FC = () => {
@@ -19,7 +21,10 @@ export const SurahList: React.FC = () => {
     pauseAudio, 
     isPlaying, 
     activePlayingSurah, 
-    lastRead 
+    lastRead,
+    reciter,
+    setReciter,
+    setIsSettingsOpen
   } = useQuran();
 
   const [searchFilter, setSearchFilter] = useState('');
@@ -174,6 +179,37 @@ export const SurahList: React.FC = () => {
           </div>
         </div>
 
+      </div>
+
+      {/* Quick Reciter Pill */}
+      <div className="flex flex-wrap items-center justify-between gap-2 px-1 text-xs">
+        <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+          <Headphones className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+          <span>Reciter:</span>
+          <button
+            onClick={() => setIsSettingsOpen(true)}
+            className="font-bold text-emerald-800 dark:text-emerald-300 hover:underline"
+          >
+            {reciter.name} ({reciter.arabicName})
+          </button>
+        </div>
+
+        {reciter.id !== 'okasha-kameny' ? (
+          <button
+            onClick={() => {
+              const okasha = RECITERS_LIST.find((r) => r.id === 'okasha-kameny');
+              if (okasha) setReciter(okasha);
+            }}
+            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-800 dark:text-amber-300 text-[11px] font-bold border border-amber-500/30 transition-all active:scale-95 shadow-sm"
+          >
+            <Sparkles className="w-3 h-3 text-amber-500" />
+            <span>Switch to Okasha Kameny</span>
+          </button>
+        ) : (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-[10px] font-semibold border border-emerald-500/20">
+            ✓ Okasha Kameny Active
+          </span>
+        )}
       </div>
 
       {/* Surahs Grid / List */}

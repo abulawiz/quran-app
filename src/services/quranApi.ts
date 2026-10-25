@@ -27,8 +27,9 @@ export async function fetchSurah(
 
   // Network request to AlQuran Cloud multi-edition endpoint
   try {
+    const apiAudioReciter = reciterApiId === 'ar.okashakameny' ? 'ar.alafasy' : reciterApiId;
     const res = await fetch(
-      `https://api.alquran.cloud/v1/surah/${surahNumber}/editions/quran-uthmani,${translationEdition},${reciterApiId}`
+      `https://api.alquran.cloud/v1/surah/${surahNumber}/editions/quran-uthmani,${translationEdition},${apiAudioReciter}`
     );
 
     if (!res.ok) {
@@ -45,12 +46,17 @@ export async function fetchSurah(
         const transAyah = translationData?.ayahs?.[idx];
         const audAyah = audioData?.ayahs?.[idx];
 
+        const audioLink =
+          reciterApiId === 'ar.okashakameny'
+            ? `https://cdn.mp3quran.net/audio/okasha-kameny/r2/${String(surahNumber).padStart(3, '0')}.mp3`
+            : (audAyah ? audAyah.audio : `https://cdn.islamic.network/quran/audio/128/${reciterApiId}/${arAyah.number}.mp3`);
+
         return {
           number: arAyah.number,
           numberInSurah: arAyah.numberInSurah,
           text: arAyah.text,
           translation: transAyah ? transAyah.text : '',
-          audio: audAyah ? audAyah.audio : `https://cdn.islamic.network/quran/audio/128/${reciterApiId}/${arAyah.number}.mp3`,
+          audio: audioLink,
           juz: arAyah.juz,
           page: arAyah.page,
           sajda: arAyah.sajda
@@ -135,7 +141,10 @@ export async function downloadSurahForOffline(
   }
 }
 
-export function getAyahAudioUrl(globalAyahNumber: number, reciterApiId = 'ar.alafasy'): string {
+export function getAyahAudioUrl(globalAyahNumber: number, reciterApiId = 'ar.alafasy', surahNumber?: number): string {
+  if (reciterApiId === 'ar.okashakameny' && surahNumber) {
+    return `https://cdn.mp3quran.net/audio/okasha-kameny/r2/${String(surahNumber).padStart(3, '0')}.mp3`;
+  }
   return `https://cdn.islamic.network/quran/audio/128/${reciterApiId}/${globalAyahNumber}.mp3`;
 }
 

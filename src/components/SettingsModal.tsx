@@ -7,7 +7,8 @@ import {
   Headphones, 
   Languages, 
   Palette, 
-  Sliders 
+  Sliders,
+  User 
 } from 'lucide-react';
 
 export const SettingsModal: React.FC = () => {
@@ -18,6 +19,7 @@ export const SettingsModal: React.FC = () => {
     updateSettings,
     reciter,
     setReciter,
+    setCurrentTab,
   } = useQuran();
 
   if (!isSettingsOpen) return null;
@@ -245,7 +247,18 @@ export const SettingsModal: React.FC = () => {
 
         </div>
 
-        <div className="p-4 bg-slate-50 dark:bg-[#0a1118] border-t border-slate-100 dark:border-slate-800 flex justify-end">
+        <div className="p-4 bg-slate-50 dark:bg-[#0a1118] border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+          <button
+            onClick={() => {
+              setIsSettingsOpen(false);
+              setCurrentTab('author');
+            }}
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-emerald-800 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition-colors"
+          >
+            <User className="w-3.5 h-3.5" />
+            <span>About Author</span>
+          </button>
+
           <button
             onClick={() => setIsSettingsOpen(false)}
             className="px-5 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-semibold text-xs shadow-md transition-all"

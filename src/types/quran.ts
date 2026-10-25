@@ -72,3 +72,14 @@ export interface JuzMeta {
   startSurahName: string;
   startAyah: number;
 }
+
+export type NavigationTab =
+  | 'surahs'
+  | 'surah-detail'
+  | 'juz'
+  | 'bookmarks'
+  | 'tasbih'
+  | 'adhkar'
+  | 'prayer-times'
+  | 'author';
+

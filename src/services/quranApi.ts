@@ -79,7 +79,18 @@ export async function fetchSurah(
     return OFFLINE_SURAHS[surahNumber];
   }
 
-  throw new Error(`Unable to load Surah ${surahNumber}. Please check your internet connection.`);
+  // Check any cached edition of this Surah
+  try {
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith(`${CACHE_PREFIX}${surahNumber}_`)) {
+        const item = localStorage.getItem(key);
+        if (item) return JSON.parse(item);
+      }
+    }
+  } catch {}
+
+  throw new Error(`Unable to load Surah ${surahNumber}. Please connect to the internet once to cache this Surah.`);
 }
 
 export function getAyahAudioUrl(globalAyahNumber: number, reciterApiId = 'ar.alafasy'): string {

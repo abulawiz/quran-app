@@ -16,11 +16,12 @@ import { TafseerModal } from './components/TafseerModal';
 import { PrayerTimesModal } from './components/PrayerTimesModal';
 import { QRCodeModal } from './components/QRCodeModal';
 import { LoadingScreen } from './components/LoadingScreen';
+import { AboutAuthorView } from './components/AboutAuthorView';
 import type { TafseerResult } from './services/quranApi';
-import { Clock, QrCode } from 'lucide-react';
+import { Clock, QrCode, User } from 'lucide-react';
 
 const QuranMain: React.FC = () => {
-  const { currentTab, setIsQRCodeOpen } = useQuran();
+  const { currentTab, setCurrentTab, setIsQRCodeOpen } = useQuran();
 
   const [tafseerData, setTafseerData] = useState<{
     isOpen: boolean;
@@ -74,6 +75,7 @@ const QuranMain: React.FC = () => {
         {currentTab === 'prayer-times' && <PrayerTimesView />}
         {currentTab === 'bookmarks' && <BookmarksView />}
         {currentTab === 'tasbih' && <TasbihView />}
+        {currentTab === 'author' && <AboutAuthorView />}
       </main>
 
       {/* Footer (Desktop only or clean minimal) */}
@@ -88,6 +90,14 @@ const QuranMain: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-4 text-xs">
+            <button
+              onClick={() => setCurrentTab('author')}
+              className="flex items-center gap-1.5 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-medium text-emerald-700 dark:text-emerald-400"
+            >
+              <User className="w-3.5 h-3.5" />
+              <span>About Author</span>
+            </button>
+            <span>•</span>
             <button
               onClick={() => setIsPrayerTimesOpen(true)}
               className="flex items-center gap-1.5 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors font-medium"

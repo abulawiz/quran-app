@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
-import type { SurahMeta, Reciter, Bookmark, ReadingSettings, Ayah } from '../types/quran';
+import type { SurahMeta, Reciter, Bookmark, ReadingSettings, Ayah, NavigationTab } from '../types/quran';
 import { RECITERS_LIST } from '../data/reciters';
 import { SURAHS_LIST } from '../data/surahs';
 import { getAyahAudioUrl } from '../services/quranApi';
@@ -32,8 +32,8 @@ export const playChime = () => {
 
 interface QuranContextType {
   // Navigation & View
-  currentTab: 'surahs' | 'surah-detail' | 'juz' | 'bookmarks' | 'tasbih' | 'adhkar' | 'prayer-times';
-  setCurrentTab: (tab: 'surahs' | 'surah-detail' | 'juz' | 'bookmarks' | 'tasbih' | 'adhkar' | 'prayer-times') => void;
+  currentTab: NavigationTab;
+  setCurrentTab: (tab: NavigationTab) => void;
   selectedSurahNumber: number;
   setSelectedSurahNumber: (num: number) => void;
   openSurah: (surahNumber: number, targetAyahNumber?: number) => void;
@@ -103,7 +103,7 @@ const DEFAULT_SETTINGS: ReadingSettings = {
 const QuranContext = createContext<QuranContextType | undefined>(undefined);
 
 export const QuranProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [currentTab, setCurrentTab] = useState<'surahs' | 'surah-detail' | 'juz' | 'bookmarks' | 'tasbih' | 'adhkar' | 'prayer-times'>('surahs');
+  const [currentTab, setCurrentTab] = useState<NavigationTab>('surahs');
   const [selectedSurahNumber, setSelectedSurahNumber] = useState<number>(1);
   const [targetAyahScroll, setTargetAyahScroll] = useState<number | null>(null);
 
